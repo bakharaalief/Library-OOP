@@ -75,9 +75,7 @@ public class RentBook {
                 ditemukan = true;
                 userBookData = data;
             }
-            else{
-                ditemukan = false;
-            }
+
         }
     }
 
@@ -152,52 +150,68 @@ public class RentBook {
 
     //list rent check
     public void listRentCheck(){
+        //jumlah buku awal
+        amountBookSementara = 0;
+
         //untuk menghitung buku yang dipinjam
         for(int i = 0; i < listRentSementara.size(); i++){
             amountBookSementara += listRentSementara.get(i).getAmount();
         }
 
-        //ketika buku = 2 boleh pinjam
+        //ketika buku >= 2 boleh pinjam
         if(amountBookSementara >= 2){
             bolehPinjam = true;
+        }
+
+        //ketika buku kurang
+        else{
+            bolehPinjam = false;
         }
     }
 
     //ketika sudah selesai melakukan data
     public void rentBookSelesai(){
+        boolean terpenuhi;
+
         //cek buku sudah lebih dari 2
         listRentCheck();
 
         //ketika buku sudah sama dengan 2 atau lebih
         if(bolehPinjam){
 
-            for ( int i = 0; i < listRentSementara.size(); i++){
-
-                UserBook data = listRentSementara.get(i);
-                String titleInput = data.getTitle();
-                int amountInput = data.getAmount();
-
-                try{
-                    //membuat di dalam server
-                    userBookDaoModel.create(data);
-
-                    //mengurangi stock buku
-                    bookStock.minusStockBook(titleInput, amountInput);
-                }
-
-                catch (Exception e){
-                    System.out.println("maaf melakukan pinjaman gagal buku baru gagal");
-                }
-            }
-
             //ketika umur 18 tahun ke atas
-            if(userData.getAge() >= 18){
+            if (userData.getAge() >= 18) {
                 adultIncome.rentTotal(listRentSementara);
+                terpenuhi = adultIncome.isTerpenuhi();
             }
 
             //selain itu
-            else{
+            else {
                 youngIncome.rentTotal(listRentSementara);
+                terpenuhi = youngIncome.isTerpenuhi();
+            }
+
+            if(terpenuhi){
+                for ( int i = 0; i < listRentSementara.size(); i++) {
+                    UserBook data = listRentSementara.get(i);
+                    String titleInput = data.getTitle();
+                    int amountInput = data.getAmount();
+
+                    try {
+                        //membuat di dalam server
+                        userBookDaoModel.create(data);
+
+                        //mengurangi stock buku
+                        bookStock.minusStockBook(titleInput, amountInput);
+
+                    } catch (Exception e) {
+                        System.out.println("maaf melakukan pinjaman gagal buku baru gagal");
+                    }
+                }
+            }
+
+            else {
+                //System.out.println("maaf saldo anda kurang");
             }
 
             listRentSementara.clear();
@@ -251,5 +265,11 @@ public class RentBook {
         else{
             System.out.println("Maaf pengembalian gagal karena data tidak ditemukan");
         }
+    }
+
+    //mengambil jumlah buku yang dipinjam
+    public int getAmountBookSementara(){
+        listRentCheck();
+        return amountBookSementara;
     }
 }

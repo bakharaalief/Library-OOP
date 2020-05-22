@@ -84,6 +84,24 @@ public class UserDaoModel implements Dao<User> {
         }
     }
 
+    public void updateBalance(User user){
+        String sql = "UPDATE user SET balance=? WHERE id_user=?";
+
+        try {
+            PreparedStatement pstmt = DBConnection.getConnection().prepareStatement(sql);
+
+            pstmt.setDouble(1, user.getBalance());
+            pstmt.setInt(2, user.getId());
+            pstmt.executeUpdate();
+
+            //notif user berhasil diupdate
+            System.out.println("Perubahaan saldo berhasil dilakukan");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void delete(User user) {
         String sql = "DELETE FROM user WHERE id_user=?";

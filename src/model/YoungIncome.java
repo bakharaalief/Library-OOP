@@ -3,10 +3,9 @@ package model;
 import java.util.ArrayList;
 
 public class YoungIncome extends IncomeManage implements DiskonRent {
-    private double hasil;
+    UserManage userManage = new UserManage();
     double potongan;
     double rentCost;
-
 
     @Override
     public double rentPrice(String titleInput, int amountInput, long rentDay){
@@ -22,19 +21,34 @@ public class YoungIncome extends IncomeManage implements DiskonRent {
 
         diskonBuku(income, totalBanyakBuku);
 
-        System.out.println("total harga : " + income);
-        System.out.println("setelah diskon : " + hasil);
+        System.out.println("total harga     : " + income);
+        System.out.println("setelah diskon  : " + hasil);
 
         Income data = new Income(firstname, lastname, income, potongan, hasil);
 
-        try{
-            //membuat dalam server
-            rentIncomeDaoModel.create(data);
+        //untuk mengecek apakah saldo user cukup
+        cekSaldoCukup(firstname,lastname);
+
+        if(terpenuhi){
+
+            //mengurangi saldo
+            userManage.minusBalance(firstname, lastname, hasil);
+
+            try{
+                //membuat dalam server
+                rentIncomeDaoModel.create(data);
+            }
+
+            catch (Exception e){
+                System.out.println("maaf melakukan pinjaman gagal buku baru gagal");
+            }
         }
 
-        catch (Exception e){
-            System.out.println("maaf melakukan pinjaman gagal buku baru gagal");
+        else{
+            //System.out.println("maaf saldo anda kurang");
         }
+
+
     }
 
     @Override
@@ -42,13 +56,19 @@ public class YoungIncome extends IncomeManage implements DiskonRent {
         if(amount > 2 ){
             potongan = income * 0.05;
             hasil = income - potongan;
-            System.out.println("potongan " + potongan);
+            System.out.println("potongan    :" + potongan);
         }
         else{
             potongan = 0;
+            System.out.println("potongan    :" + potongan);
             hasil = income;
         }
 
         return hasil;
+    }
+
+    @Override
+    public boolean isTerpenuhi() {
+        return super.isTerpenuhi();
     }
 }

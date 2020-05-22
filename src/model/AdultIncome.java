@@ -5,7 +5,7 @@ import daomodel.RentIncomeDaoModel;
 import java.util.ArrayList;
 
 public class AdultIncome extends IncomeManage implements DiskonRent {
-    private double hasil;
+    UserManage userManage = new UserManage();
     private double potongan;
     private double rentCost;
 
@@ -21,6 +21,7 @@ public class AdultIncome extends IncomeManage implements DiskonRent {
     public void rentTotal(ArrayList<UserBook> listPinjam){
         super.rentTotal(listPinjam);
 
+        //menghitung diskon
         diskonBuku(income, totalBanyakBuku);
 
         System.out.println("total harga : " + income);
@@ -28,15 +29,29 @@ public class AdultIncome extends IncomeManage implements DiskonRent {
 
         Income data = new Income(firstname, lastname, income, potongan, hasil);
 
-        try{
-            //membuat dalam server
-            rentIncomeDaoModel.create(data);
+        //untuk mengecek apakah saldo user cukup
+        cekSaldoCukup(firstname,lastname);
+
+        //jika saldo cukup
+        if(terpenuhi){
+
+            //mengurangi saldo
+            userManage.minusBalance(firstname, lastname, hasil);
+
+            try{
+                //membuat dalam server
+                //rentIncomeDaoModel.create(data);
+            }
+
+            catch (Exception e){
+                System.out.println("maaf melakukan pinjaman gagal buku baru gagal");
+            }
         }
 
-        catch (Exception e){
-            System.out.println("maaf melakukan pinjaman gagal buku baru gagal");
+        //ketika saldo kurang
+        else{
+            System.out.println("maaf saldo anda kurang");
         }
-
     }
 
     @Override
@@ -52,5 +67,10 @@ public class AdultIncome extends IncomeManage implements DiskonRent {
         }
 
         return hasil;
+    }
+
+    @Override
+    public boolean isTerpenuhi() {
+        return super.isTerpenuhi();
     }
 }

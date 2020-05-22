@@ -37,6 +37,12 @@ public class User {
         this.age = age;
     }
 
+    //menambah saldo
+    public User(int id, double balance) {
+        this.id = id;
+        this.balance = balance;
+    }
+
     public String getFirstname() {
         return firstname;
     }

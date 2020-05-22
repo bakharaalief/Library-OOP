@@ -58,7 +58,7 @@ public class UserManage {
             String firstname = firstnameInput;
             String lastname = lastnameInput;
             int age = ageInput;
-            double balance = 0;
+            double balance = 5000;
 
             //data yang dibuat untuk input ke create
             User data = new User(firstname, lastname, age, balance);
@@ -105,6 +105,64 @@ public class UserManage {
             System.out.println("Maaf perubahan tidak dapat dilakukan karena data tidak ditemukan");
         }
 
+    }
+
+    //menambah balance
+    public void addBalance(String firstnameInput, String lastnameInput, double balance){
+        //cek terlebih dahulu
+        userCheck(firstnameInput, lastnameInput);
+
+        int id = userData.getId();
+        double saldoAwal = userData.getBalance();
+        double saldoBaru = saldoAwal + balance;
+
+        User data = new User(id, saldoBaru);
+
+        //jika data ada
+        if(ditemukan) {
+            try {
+                userDaoModel.updateBalance(data);
+                ditemukan = false;
+            }
+
+            catch (Exception e) {
+                System.out.println("Maaf saldo tidak dapat ditambah");
+            }
+        }
+
+        //jika nggak
+        else{
+            System.out.println("Maaf saldo tidak dapat ditambah karena data tidak ditemukan");
+        }
+    }
+
+    //mengurangi balance
+    public void minusBalance(String firstnameInput, String lastnameInput, double balance){
+        //cek terlebih dahulu
+        userCheck(firstnameInput, lastnameInput);
+
+        int id = userData.getId();
+        double saldoAwal = userData.getBalance();
+        double saldoBaru = saldoAwal - balance;
+
+        User data = new User(id, saldoBaru);
+
+        //jika data ada
+        if(ditemukan) {
+            try {
+                userDaoModel.updateBalance(data);
+                ditemukan = false;
+            }
+
+            catch (Exception e) {
+                System.out.println("Maaf saldo tidak dapat ditambah");
+            }
+        }
+
+        //jika nggak
+        else{
+            System.out.println("Maaf saldo tidak dapat ditambah karena data tidak ditemukan");
+        }
     }
 
     //delete user
