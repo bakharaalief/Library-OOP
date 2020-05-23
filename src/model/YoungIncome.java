@@ -21,8 +21,8 @@ public class YoungIncome extends IncomeManage implements DiskonRent {
 
         diskonBuku(income, totalBanyakBuku);
 
-        System.out.println("total harga     : " + income);
-        System.out.println("setelah diskon  : " + hasil);
+        System.out.println("Total Harga     : Rp. " + income);
+        System.out.println("Setelah Diskon  : Rp. " + hasil);
 
         Income data = new Income(firstname, lastname, income, potongan, hasil);
 
@@ -56,11 +56,11 @@ public class YoungIncome extends IncomeManage implements DiskonRent {
         if(amount > 2 ){
             potongan = income * 0.05;
             hasil = income - potongan;
-            System.out.println("potongan    :" + potongan);
+            System.out.println("Potongan        : Rp. " + potongan);
         }
         else{
             potongan = 0;
-            System.out.println("potongan    :" + potongan);
+            System.out.println("Potongan        : Rp. " + potongan);
             hasil = income;
         }
 

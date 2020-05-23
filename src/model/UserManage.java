@@ -82,11 +82,23 @@ public class UserManage {
         //jika ditemukan
         if(ditemukan){
             int id = userData.getId();
-            System.out.print("Nama depan baru : ");
-            String newFirstname = input.next();
-            System.out.print("Nama belakang baru : ");
-            String newLastname = input.next();
-            System.out.print("Umur baru : ");
+
+            //agar pisah
+            input = new Scanner(System.in);
+
+            //nama depan baru
+            System.out.print("Nama depan baru       : ");
+            String newFirstname = input.nextLine();
+
+            //agar pisah
+            input = new Scanner(System.in);
+
+            //nama belakang baru
+            System.out.print("Nama belakang baru    : ");
+            String newLastname = input.nextLine();
+
+            //umur baru
+            System.out.print("Umur baru             : ");
             int newAge = input.nextInt();
 
             //data baru untuk diset
@@ -195,6 +207,8 @@ public class UserManage {
 
         //apabila check berhasil
         if(ditemukan){
+            System.out.println("-------------------");
+
             //mengubah tanggal
             String pattern = "E, dd MMM yyyy"; //output ex: sun, 17 may 2020
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
@@ -204,7 +218,7 @@ public class UserManage {
             System.out.println("Nama Depan      : " + userData.getFirstname());
             System.out.println("Nama Belakang   : " + userData.getLastname());
             System.out.println("Umur            : " + userData.getAge());
-            System.out.println("Saldo           : " + userData.getBalance());
+            System.out.println("Saldo           : Rp. " + userData.getBalance());
             System.out.println("Bergabung       : " + date);
         }
 

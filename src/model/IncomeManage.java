@@ -2,7 +2,9 @@ package model;
 
 import daomodel.RentIncomeDaoModel;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class IncomeManage {
     protected ArrayList<Income> listIncome;
@@ -42,7 +44,7 @@ public class IncomeManage {
             terpenuhi = false;
         }
 
-        System.out.println("user saldo : " + userBalance);
+        System.out.println("User Saldo      : Rp. " + userBalance);
     }
 
     public double rentPrice(String titleInput, int amountInput, long rentDay) {
@@ -59,6 +61,7 @@ public class IncomeManage {
 
     public void rentTotal(ArrayList<UserBook> listPinjam) {
         //mengambil data para array listPinjam
+        System.out.println("Judul Buku -- Jumlah -- Biaya Sewa");
         for(int i = 0; i < listPinjam.size(); i++){
             UserBook data = listPinjam.get(i);
             int banyakBuku = data.getAmount();
@@ -72,11 +75,36 @@ public class IncomeManage {
             int diffDays = (int) (rent_day / (24 * 60 * 60 * 1000)); //mengubah long ke int dalam bentuk hari
 
             double rentCost = rentPrice(title, amount, diffDays);
-            System.out.println(title + "--" + amount + "--" + rentCost);
+            System.out.println(title + " -- " + amount + " -- " + rentCost);
 
             totalBanyakBuku += banyakBuku;
             income += rentCost;
         }
+    }
+
+    public void listPendapatan(){
+        listIncome = rentIncomeDaoModel.getAll();
+
+        System.out.println("No -- Nama Depan -- Nama Belakang -- Harga Awal -- Diskon -- Harga Akhir -- Tanggal Transaksi");
+        System.out.println("---------------------------------------------------------------");
+        for(int i = 0; i < listIncome.size(); i++){
+
+            int number = i + 1;
+            Income data = listIncome.get(i);
+            String firstname = data.getFirstname();
+            String lastname = data.getLastname();
+            double hargaAwal = data.getIncome();
+            double discount = data.getDiscount();
+            double hargaAkhir = data.getFinal_income();
+
+            //tanggal
+            String pattern = "E, dd MMM yyyy"; //output ex: sun, 17 may 2020
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+            String date = simpleDateFormat.format(data.getCreated());
+
+            System.out.println(number + " -- " + firstname + " -- " + lastname + " -- " + hargaAwal + " -- " + discount + " -- " + hargaAkhir + " -- " + date);
+        }
+
     }
 
     public void totalPendapatan(){
@@ -88,7 +116,7 @@ public class IncomeManage {
             totalIncome += data.getFinal_income();
         }
 
-        System.out.println("total Pendapatan : " + totalIncome);
+        System.out.println("total Pendapatan : Rp. " + totalIncome );
     }
 
     public boolean isTerpenuhi() {

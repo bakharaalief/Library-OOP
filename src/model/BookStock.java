@@ -82,30 +82,30 @@ public class BookStock {
         //jika ditemukan
         if(ditemukan){
             int id = bookData.getId();
-            System.out.print("Judul baru : ");
+            System.out.print("Judul Buku Baru       : ");
             String newTitle = input.nextLine();
 
             //agar tidak nempel
             input = new Scanner(System.in);
 
-            System.out.print("Sinopsis baru : ");
+            System.out.print("Sinopsis Buku Baru    : ");
             String newSynopsis = input.nextLine();
 
             //agar tidak nempel
             input = new Scanner(System.in);
 
-            System.out.print("Genre baru : ");
+            System.out.print("Genre Buku Baru       : ");
             String newGenre = input.nextLine();
 
             //agar tidak nempel
             input = new Scanner(System.in);
 
-            System.out.print("Penulis baru : ");
+            System.out.print("Penulis Buku Baru     : ");
             String newWriter = input.nextLine();
 
-            System.out.print("Tanggal penerbit baru : ");
+            System.out.print("Tanggal Penerbit Baru : ");
             int newPublished = input.nextInt();
-            System.out.print("Harga baru : ");
+            System.out.print("Harga Buku Baru       : ");
             double newPrice = input.nextDouble();
 
             //data baru untuk diset
@@ -131,7 +131,7 @@ public class BookStock {
 
         if(ditemukan){
             int id = bookData.getId();
-            System.out.print("Stok total baru : ");
+            System.out.print("Stok total baru   : ");
             int newAmount = input.nextInt();
 
             Book dataBaru = new Book(id, newAmount);
@@ -223,6 +223,8 @@ public class BookStock {
         //refresh database
         listBuku = bookDaoModel.getAll();
 
+        System.out.println("-------------------");
+
         for (int i = 0; i < listBuku.size(); i++){
             String title_data = listBuku.get(i).getTitle().toLowerCase();
 
@@ -260,7 +262,7 @@ public class BookStock {
         String genre = listBuku.get(index).getGenre().toLowerCase();
 
         System.out.println("Judul--penulis--terbit--harga--stock");
-        System.out.println("------------------------------------");
+        System.out.println("-------------------");
         for (int i = 0; i < listBuku.size(); i++){
 
             //jika genre sama
@@ -272,7 +274,6 @@ public class BookStock {
         }
     }
 
-
     //list buku
     public void listBook(){
         //refresh database
@@ -281,10 +282,17 @@ public class BookStock {
         System.out.println("No -- Judul Buku -- Genre -- Writer -- Terbit -- Harga -- stock");
         System.out.println("---------------------------------------------------------------");
         for (int i = 0; i < listBuku.size(); i++){
+
             int number = i + 1;
             Book dataBuku = listBuku.get(i);
+            String judul = dataBuku.getTitle();
+            String genre = dataBuku.getGenre();
+            String penulis = dataBuku.getWriter();
+            int terbit = dataBuku.getPublished();
+            double harga = dataBuku.getPrice();
+            int jumlah = dataBuku.getAmount();
 
-            System.out.println(number + " -- " + dataBuku.getTitle() + " -- " + dataBuku.getGenre() + " -- " + dataBuku.getWriter() + " -- " + dataBuku.getPublished() + " -- " + dataBuku.getPrice() + " -- " + dataBuku.getAmount());
+            System.out.println(number + " -- " + judul + " -- " + genre + " -- " + penulis + " -- " + terbit + " -- " + harga + " -- " + jumlah);
         }
     }
 
