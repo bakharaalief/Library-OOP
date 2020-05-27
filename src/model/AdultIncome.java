@@ -1,10 +1,12 @@
 package model;
 
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import daomodel.RentIncomeDaoModel;
 
 import java.util.ArrayList;
 
 public class AdultIncome extends IncomeManage implements DiskonRent {
+    Boneka boneka = new Boneka();
     UserManage userManage = new UserManage();
     private double potongan;
     private double rentCost;
@@ -40,7 +42,7 @@ public class AdultIncome extends IncomeManage implements DiskonRent {
 
             try{
                 //membuat dalam server
-                //rentIncomeDaoModel.create(data);
+                rentIncomeDaoModel.create(data);
             }
 
             catch (Exception e){
@@ -56,11 +58,30 @@ public class AdultIncome extends IncomeManage implements DiskonRent {
 
     @Override
     public double diskonBuku(double income, int amount) {
-        if(amount > 2 ){
+
+        if(amount >= 5){
+            potongan = income * 0.1;
+            hasil = income - potongan;
+            System.out.println("Potongan        : Rp. " + potongan);
+
+
+            System.out.println("-----------");
+
+            //mendapatkan boneka
+            System.out.println("Selamat Anda Mendapatkan Hadiah :");
+            boneka.infoProduk();
+
+            System.out.println("-----------");
+        }
+
+        else if(amount > 2 ){
             potongan = income * 0.05;
             hasil = income - potongan;
             System.out.println("Potongan        : Rp. " + potongan);
         }
+
+
+
         else{
             potongan = 0;
             System.out.println("Potongan        : Rp. " + potongan);

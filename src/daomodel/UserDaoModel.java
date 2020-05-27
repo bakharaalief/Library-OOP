@@ -56,7 +56,7 @@ public class UserDaoModel implements Dao<User> {
             pstmt.executeUpdate();
 
             //notif user berhasil dibuat
-            System.out.println("user berhasil dibuat");
+            System.out.println("Note : user berhasil dibuat");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,7 +77,7 @@ public class UserDaoModel implements Dao<User> {
             pstmt.executeUpdate();
 
             //notif user berhasil diupdate
-            System.out.println("Perubahaan berhasil dilakukan");
+            System.out.println("Note : Perubahaan berhasil dilakukan");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,7 +95,7 @@ public class UserDaoModel implements Dao<User> {
             pstmt.executeUpdate();
 
             //notif user berhasil diupdate
-            System.out.println("Perubahaan saldo berhasil dilakukan");
+            System.out.println("Note : Perubahaan saldo berhasil dilakukan");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -113,7 +113,7 @@ public class UserDaoModel implements Dao<User> {
             pstmt.executeUpdate();
 
             //notif user berhasil dihapus
-            System.out.println("user berhasil dihapus");
+            System.out.println("Note : user berhasil dihapus");
 
         } catch (Exception e) {
             e.printStackTrace();

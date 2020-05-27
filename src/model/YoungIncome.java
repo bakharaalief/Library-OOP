@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class YoungIncome extends IncomeManage implements DiskonRent {
+    Boneka boneka = new Boneka();
     UserManage userManage = new UserManage();
     double potongan;
     double rentCost;
@@ -45,7 +46,7 @@ public class YoungIncome extends IncomeManage implements DiskonRent {
         }
 
         else{
-            //System.out.println("maaf saldo anda kurang");
+            System.out.println("maaf saldo anda kurang");
         }
 
 
@@ -53,11 +54,29 @@ public class YoungIncome extends IncomeManage implements DiskonRent {
 
     @Override
     public double diskonBuku(double income, int amount) {
-        if(amount > 2 ){
-            potongan = income * 0.05;
+        System.out.println("jumlah " + amount);
+
+        if(amount >= 5){
+            potongan = income * 0.2;
+            hasil = income - potongan;
+            System.out.println("Potongan        : Rp. " + potongan);
+
+
+            System.out.println("-----------");
+
+            //mendapatkan boneka
+            System.out.println("Selamat Anda Mendapatkan Hadiah :");
+            boneka.infoProduk();
+
+            System.out.println("-----------");
+        }
+
+        else if(amount > 2 ){
+            potongan = income * 0.1;
             hasil = income - potongan;
             System.out.println("Potongan        : Rp. " + potongan);
         }
+
         else{
             potongan = 0;
             System.out.println("Potongan        : Rp. " + potongan);

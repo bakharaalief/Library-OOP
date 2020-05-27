@@ -45,7 +45,7 @@ public class RentBook {
     }
 
     //check buku di server
-    public void bookRentCheck(String firstnameInput, String lastnameInput, String titleInput, String dateString){
+    public void listRentSementaraCheck(String firstnameInput, String lastnameInput, String titleInput, String dateString){
         //merefresh data di database
         listRent = userBookDaoModel.getAll();
 
@@ -148,8 +148,8 @@ public class RentBook {
         }
     }
 
-    //list rent check
-    public void listRentCheck(){
+    //list rent sementara check
+    public void listRentSementaraCheck(){
         //jumlah buku awal
         amountBookSementara = 0;
 
@@ -174,7 +174,7 @@ public class RentBook {
         boolean terpenuhi;
 
         //cek buku sudah lebih dari 2
-        listRentCheck();
+        listRentSementaraCheck();
 
         //ketika buku sudah sama dengan 2 atau lebih
         if(bolehPinjam){
@@ -224,9 +224,10 @@ public class RentBook {
         }
     }
 
+    //pengembalian buku
     public void returnBook(String firstnameInput, String lastnameInput, String titleInput, String dateInput){
         //ditemukan
-        bookRentCheck(firstnameInput, lastnameInput, titleInput, dateInput);
+        listRentSementaraCheck(firstnameInput, lastnameInput, titleInput, dateInput);
 
         //ditemukan
         if(ditemukan){
@@ -269,7 +270,7 @@ public class RentBook {
 
     //mengambil jumlah buku yang dipinjam
     public int getAmountBookSementara(){
-        listRentCheck();
+        listRentSementaraCheck();
         return amountBookSementara;
     }
 }

@@ -67,7 +67,7 @@ public class UserBookDaoModel implements Dao<UserBook> {
             pstmt.executeUpdate();
 
             //notif user berhasil dibuat
-            System.out.println("userBook berhasil di import");
+            System.out.println("Note : userBook berhasil di import");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -107,7 +107,7 @@ public class UserBookDaoModel implements Dao<UserBook> {
             pstmt.executeUpdate();
 
             //notif user berhasil diupdate
-            System.out.println("Buku berhasil dikembalikan ");
+            System.out.println("Note : Buku berhasil dikembalikan ");
 
         } catch (Exception e) {
             e.printStackTrace();

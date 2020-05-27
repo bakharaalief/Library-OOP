@@ -24,62 +24,74 @@ public class Main {
     static void showMenu(){
         int pilihan = 0;
 
-        do{
-            System.out.println("Selamat Datang di Pencatatan Perpustakaan");
+        try{
+            do{
+                System.out.println("Selamat Datang di Pencatatan Perpustakaan");
 
-            //menu
-            System.out.println("-------------------");
-            System.out.println("1. Daftar Member");
-            System.out.println("2. Cari Buku");
-            System.out.println("3. Pinjam Buku");
-            System.out.println("4. Pengembalian Buku");
-            System.out.println("5. Isi saldo");
-            System.out.println("6. Pengaturan User");
-            System.out.println("7. Pengaturan Stock Buku");
-            System.out.println("8. Pengaturan Pendapatan");
-            System.out.println("0. Keluar");
+                //menu
+                System.out.println("-------------------");
+                System.out.println("1. Daftar Member");
+                System.out.println("2. Cari Buku");
+                System.out.println("3. Pinjam Buku");
+                System.out.println("4. Pengembalian Buku");
+                System.out.println("5. Isi saldo");
+                System.out.println("6. Pengaturan User");
+                System.out.println("7. Pengaturan Stock Buku");
+                System.out.println("8. Pengaturan Pendapatan");
+                System.out.println("0. Keluar");
 
-            System.out.println("-------------------");
-            System.out.print("Silahkan Pilih Menu : ");
-            pilihan = input.nextInt();
+                System.out.println("-------------------");
+                System.out.print("Silahkan Pilih Menu : ");
+                pilihan = input.nextInt();
 
-            switch (pilihan) {
-                case 0:
-                    System.exit(0);
-                    break;
-                case 1:
-                    daftarMember();
-                    break;
-                case 2 :
-                    cariBuku();
-                    break;
-                case 3:
-                    pinjemBuku();
-                    break;
-                case 4:
-                    pengembalianBuku();
-                    break;
-                case 5:
-                    isiSaldo();
-                    break;
-                case 6 :
-                    pengaturanUser();
-                    break;
-                case 7 :
-                    pengaturanStock();
-                    break;
-                case 8 :
-                    pengaturanPendapatan();
-                    break;
-                default:
-                    System.out.println("Pilihan salah!");
-            }
+                switch (pilihan) {
+                    case 0:
+                        System.exit(0);
+                        break;
+                    case 1:
+                        daftarMember();
+                        break;
+                    case 2 :
+                        cariBuku();
+                        break;
+                    case 3:
+                        pinjemBuku();
+                        break;
+                    case 4:
+                        pengembalianBuku();
+                        break;
+                    case 5:
+                        isiSaldo();
+                        break;
+                    case 6 :
+                        pengaturanUser();
+                        break;
+                    case 7 :
+                        pengaturanStock();
+                        break;
+                    case 8 :
+                        pengaturanPendapatan();
+                        break;
+                    default:
+                        System.out.println("Pilihan salah!");
+                }
 
-        }while (pilihan != 0);
+            }while (pilihan != 0);
+
+        }
+
+        catch (Exception e){
+            System.out.println("Masukkan data yang benar");
+        }
+
     }
 
     //daftar member
     static void daftarMember(){
+        String firstname;
+        String lastname;
+        int age;
+
         System.out.println("-------------------");
         System.out.println("Daftar Member");
         System.out.println("-------------------");
@@ -90,21 +102,23 @@ public class Main {
 
             //nama depan
             System.out.print("Nama Depan    : ");
-            String firstname = input.nextLine().trim();
+            firstname = input.nextLine().trim();
 
             //biar nggak nempel
             input = new Scanner(System.in);
 
             //nama belakang
             System.out.print("Nama Belakang : ");
-            String lastname = input.nextLine().trim();
+            lastname = input.nextLine().trim();
 
             //umur
             System.out.print("Umur          : ");
-            int age = input.nextInt();
+            age = input.nextInt();
 
             //method untuk daftar ke userManage
             userManage.createUser(firstname, lastname, age);
+
+            System.out.println("-------------------");
 
         }catch (Exception e){
             System.out.println("masukkan data dengan benar");
@@ -113,6 +127,7 @@ public class Main {
 
     //cari buku
     static void cariBuku() {
+        String title;
         int pilihan = 0;
 
         System.out.println("-------------------");
@@ -143,7 +158,7 @@ public class Main {
 
                         //nama depan
                         System.out.print("Masukkan Judul    : ");
-                        String title = input.nextLine().trim();
+                        title = input.nextLine().trim();
 
                         //masukkan ke server
                         bookStock.searchBookTitle(title);
@@ -254,6 +269,7 @@ public class Main {
 
         catch (Exception e){
             System.out.println("masukkan data dengan benar");
+            pilihan = 0;
         }
     }
 
@@ -337,14 +353,9 @@ public class Main {
                         System.out.print("Tanggal pinjam    : ");
                         stringDate = input.nextLine();
 
-                        try{
-                            //masukkan ke server
-                            rentBook.returnBook(firstname, lastname, title, stringDate);
-                        }
 
-                        catch (Exception e){
-                            System.out.println("masukkan data dengan benar");
-                        }
+                        //masukkan ke server
+                        rentBook.returnBook(firstname, lastname, title, stringDate);
                         break;
 
                     default:
@@ -379,16 +390,11 @@ public class Main {
             String lastname = input.nextLine().trim();
 
             //jumlah Saldo
-            System.out.print("Jumlah Saldo      :");
+            System.out.print("Jumlah Saldo      : ");
             double saldo = input.nextDouble();
 
-            try{
-                userManage.addBalance(firstname, lastname, saldo);
-            }
-
-            catch (Exception e){
-                System.out.println("masukkan data dengan benar");
-            }
+            //masuk ke class
+            userManage.addBalance(firstname, lastname, saldo);
 
         } catch (Exception e) {
             System.out.println("masukkan data dengan benar");
@@ -397,6 +403,8 @@ public class Main {
 
     //pengaturan tentang user
     static void pengaturanUser(){
+        String firstname;
+        String lastname;
         int pilihan = 0;
 
         System.out.println("-------------------");
@@ -428,14 +436,14 @@ public class Main {
 
                         //nama depan
                         System.out.print("Nama Depan lama       : ");
-                        String firstname = input.nextLine().trim();
+                        firstname = input.nextLine().trim();
 
                         //biar nggak nempel
                         input = new Scanner(System.in);
 
                         //nama belakang
                         System.out.print("Nama Belakang lama    : ");
-                        String lastname = input.nextLine().trim();
+                        lastname = input.nextLine().trim();
 
                         //masukkan ke server
                         userManage.updateUser(firstname, lastname);
@@ -506,6 +514,13 @@ public class Main {
     //pengaturan tentang Stock
     static void pengaturanStock(){
         int pilihan = 0;
+        String title;
+        String synopsis;
+        String genre;
+        String writer;
+        int published;
+        double price;
+        int amount;
 
         System.out.println("-------------------");
         System.out.println("Pengaturan Stock Buku");
@@ -514,8 +529,10 @@ public class Main {
             do{
                 System.out.println("-------------------");
                 System.out.println("1. List Buku");
-                System.out.println("2. Update Info Buku");
-                System.out.println("3. Update Total Buku");
+                System.out.println("2. Masukkan Buku Baru");
+                System.out.println("3. Update Info Buku");
+                System.out.println("4. Update Total Buku");
+                System.out.println("5. Delete Buku");
                 System.out.println("0. Selesai Menu");
                 System.out.print("Silahkan Pilih Menu : ");
                 pilihan = input.nextInt();
@@ -533,8 +550,63 @@ public class Main {
                         bookStock.listBook();
                         break;
 
-                    //update info buku
+                    //buku baru
                     case 2 :
+                        System.out.println("-------------------");
+                        System.out.println("Import Buku Baru");
+                        System.out.println("-------------------");
+
+                        //biar nggak nempel
+                        input = new Scanner(System.in);
+
+                        //judul baku baru
+                        System.out.print("Judul Buku Baru   : ");
+                        title = input.nextLine().trim();
+
+                        //biar nggak nempel
+                        input = new Scanner(System.in);
+
+                        //Synopsis baru
+                        System.out.print("Synopsis Baru     : ");
+                        synopsis = input.nextLine().trim();
+
+                        //biar nggak nempel
+                        input = new Scanner(System.in);
+
+                        //genre baru
+                        System.out.print("Genre Baru        : ");
+                        genre = input.nextLine().trim();
+
+                        //biar nggak nempel
+                        input = new Scanner(System.in);
+
+                        //penulis baru
+                        System.out.print("Writer Baru       : ");
+                        writer = input.nextLine().trim();
+
+                        //biar nggak nempel
+                        input = new Scanner(System.in);
+
+                        //Harga baru
+                        System.out.print("Terbit Baru       : ");
+                        published = input.nextInt();
+
+                        //Harga baru
+                        System.out.print("Harga Baru        : ");
+                        price = input.nextDouble();
+
+                        //Harga baru
+                        System.out.print("jumlah Baru       : ");
+                        amount = input.nextInt();
+
+                        //masuk ke method
+                        bookStock.importNewBook(title, synopsis, genre, writer, published, price, amount);
+
+                        break;
+
+
+                    //update info buku
+                    case 3 :
                         System.out.println("-------------------");
                         System.out.println("Update Info Buku");
                         System.out.println("-------------------");
@@ -542,16 +614,16 @@ public class Main {
                         //biar nggak nempel
                         input = new Scanner(System.in);
 
-                        //nama depan
+                        //judul baku lama
                         System.out.print("Judul Buku Lama       : ");
-                        String title = input.nextLine().trim();
+                        title = input.nextLine().trim();
 
-                        //masukkan ke server
+                        //masuk ke method
                         bookStock.updateInfoBook(title);
 
                         break;
 
-                    case 3:
+                    case 4:
                         System.out.println("-------------------");
                         System.out.println("Update Total Buku");
                         System.out.println("-------------------");
@@ -559,12 +631,28 @@ public class Main {
                         //biar nggak nempel
                         input = new Scanner(System.in);
 
-                        //nama depan
+                        //judul baku
                         System.out.print("Judul Buku        : ");
                         title = input.nextLine().trim();
 
-                        //masukkan ke server
+                        //masuk ke method
                         bookStock.updateTotalStockBook(title);
+                        break;
+
+                    case 5 :
+                        System.out.println("-------------------");
+                        System.out.println("Delete Buku");
+                        System.out.println("-------------------");
+
+                        //biar nggak nempel
+                        input = new Scanner(System.in);
+
+                        //judul buku
+                        System.out.print("Judul Buku        : ");
+                        title = input.nextLine().trim();
+
+                        //masuk ke method
+                        bookStock.deleteBook(title);
                         break;
 
                     default:

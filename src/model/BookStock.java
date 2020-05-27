@@ -220,6 +220,10 @@ public class BookStock {
 
     //cari buku dengan title
     public void searchBookTitle(String titleInput){
+        //id buku
+        int id = 0;
+        boolean ada = false;
+
         //refresh database
         listBuku = bookDaoModel.getAll();
 
@@ -229,16 +233,26 @@ public class BookStock {
             String title_data = listBuku.get(i).getTitle().toLowerCase();
 
             if(title_data.equals(titleInput.toLowerCase())){
-                Book data = listBuku.get(i);
-
-                System.out.println("Judul       : " + data.getTitle());
-                System.out.println("Sinopsis    : " + data.getSynopsis());
-                System.out.println("Genre       : " + data.getGenre());
-                System.out.println("Writer      : " + data.getWriter());
-                System.out.println("Published   : " + data.getPublished());
-                System.out.println("Price       : " + data.getPrice());
-                System.out.println("Amount      : " + data.getAmount());
+                ada =true;
+                id = i;
             }
+
+        }
+
+        if(ada){
+            Book data = listBuku.get(id);
+
+            System.out.println("Judul       : " + data.getTitle());
+            System.out.println("Sinopsis    : " + data.getSynopsis());
+            System.out.println("Genre       : " + data.getGenre());
+            System.out.println("Writer      : " + data.getWriter());
+            System.out.println("Published   : " + data.getPublished());
+            System.out.println("Price       : " + data.getPrice());
+            System.out.println("Amount      : " + data.getAmount());
+        }
+
+        else{
+            System.out.println("Maaf buku tidak di temukan");
         }
     }
 
