@@ -58,7 +58,7 @@ public class UserManage {
             String firstname = firstnameInput;
             String lastname = lastnameInput;
             int age = ageInput;
-            double balance = 5000;
+            double balance = age >= 18 ? 40000 : 50000; //ketika usia diatas 18 tahun, dia dipotong biaya sewa 10000
 
             //data yang dibuat untuk input ke create
             User data = new User(firstname, lastname, age, balance);
@@ -66,6 +66,8 @@ public class UserManage {
             try{
                 //membuat user di server
                 userDaoModel.create(data);
+
+                System.out.println("Nama Mu Kini Terdaftar, Selamat Datang " + firstname);
             }
 
             catch (Exception e){
@@ -106,6 +108,8 @@ public class UserManage {
 
             try{
                 userDaoModel.update(dataBaru);
+
+                System.out.println("Profile Mu Berhasil di Update");
             }
 
             catch (Exception e){
@@ -135,6 +139,8 @@ public class UserManage {
             try {
                 userDaoModel.updateBalance(data);
                 ditemukan = false;
+
+                System.out.println("Saldo Mu Berhasil Ditambah");
             }
 
             catch (Exception e) {
@@ -213,12 +219,14 @@ public class UserManage {
             String pattern = "E, dd MMM yyyy"; //output ex: sun, 17 may 2020
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
             String date = simpleDateFormat.format(userData.getCreated());
+            String iuran = userData.getAge() >= 18 ? "Ya" : "Tidak";
 
             //bio yang muncul
             System.out.println("Nama Depan      : " + userData.getFirstname());
             System.out.println("Nama Belakang   : " + userData.getLastname());
             System.out.println("Umur            : " + userData.getAge());
             System.out.println("Saldo           : Rp. " + userData.getBalance());
+            System.out.println("Iuran Bulanan   : " + iuran);
             System.out.println("Bergabung       : " + date);
         }
 

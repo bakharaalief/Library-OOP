@@ -16,8 +16,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        showMenu();
-
+       showMenu();
     }
 
     //menu
@@ -26,6 +25,7 @@ public class Main {
 
         try{
             do{
+                System.out.println(" ");
                 System.out.println("Selamat Datang di Pencatatan Perpustakaan");
 
                 //menu
@@ -306,7 +306,7 @@ public class Main {
             //biar nggak nempel
             input = new Scanner(System.in);
 
-            System.out.println("Masukkan ex: ( 2020-20-20 ) ");
+            System.out.println("Masukkan ex: ( YYYY-MM-DD ) ");
             System.out.print("Tanggal pinjam    : ");
             String stringDate = input.nextLine().trim();
 
@@ -349,7 +349,7 @@ public class Main {
                         //biar nggak nempel
                         input = new Scanner(System.in);
 
-                        System.out.println("Masukkan ex: ( 2020-20-20 ) ");
+                        System.out.println("Masukkan ex: ( YYYY-MM-DD ) ");
                         System.out.print("Tanggal pinjam    : ");
                         stringDate = input.nextLine();
 
@@ -533,6 +533,7 @@ public class Main {
                 System.out.println("3. Update Info Buku");
                 System.out.println("4. Update Total Buku");
                 System.out.println("5. Delete Buku");
+                System.out.println("6. List Buku Dipinjam");
                 System.out.println("0. Selesai Menu");
                 System.out.print("Silahkan Pilih Menu : ");
                 pilihan = input.nextInt();
@@ -653,6 +654,13 @@ public class Main {
 
                         //masuk ke method
                         bookStock.deleteBook(title);
+                        break;
+
+                    case 6 :
+                        System.out.println("-------------------");
+                        System.out.println("List Pinjam Buku");
+                        System.out.println("-------------------");
+                        rentBook.listRentBook();
                         break;
 
                     default:

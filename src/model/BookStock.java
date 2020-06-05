@@ -8,12 +8,14 @@ import java.util.Scanner;
 
 public class BookStock {
     private ArrayList<Book> listBuku;
+    private ArrayList<String> genreList;
     private BookDaoModel bookDaoModel;
     private Book bookData;
     private boolean ditemukan;
     private Scanner input = new Scanner(System.in);
 
     public BookStock(){
+        genreList = new ArrayList<>();
         bookDaoModel = new BookDaoModel();
         ditemukan = false;
     }
@@ -256,6 +258,38 @@ public class BookStock {
         }
     }
 
+    //cari genre di list
+    public void genreCheck(String genre){
+        String genreInput = genre.toLowerCase().trim();
+        boolean genreDitemukan = false;
+
+        if(genreList.size() > 0){
+
+            for(int i = 0; i < genreList.size(); i++){
+                String genreCek = genreList.get(i).toLowerCase().trim();
+
+                if(genreCek.equals(genreInput)){
+                    genreDitemukan = true;
+                    break;
+                }
+            }
+
+            if(!genreDitemukan){
+                genreList.add(genre);
+            }
+
+            else{
+                genreDitemukan = false;
+            }
+
+        }
+
+        else{
+            genreList.add(genre);
+        }
+
+    }
+
     //cari buku dengan genre
     public void searchBookGenre(){
         //refresh database
@@ -265,7 +299,12 @@ public class BookStock {
         for (int i = 0; i < listBuku.size(); i++){
             int number = i + 1;
 
-            System.out.println(number + " " + listBuku.get(i).getGenre() );
+            genreCheck(listBuku.get(i).getGenre());
+        }
+
+        for(int i = 0; i < genreList.size(); i++){
+            int number = i + 1;
+            System.out.println(number + " " + genreList.get(i));
         }
 
         System.out.print("Masukkan nomor genre : ");
@@ -273,17 +312,24 @@ public class BookStock {
         int index = number - 1;
 
         //genre yang ditemukan
-        String genre = listBuku.get(index).getGenre().toLowerCase();
+        String genreDitemukan = genreList.get(index).toLowerCase();
 
-        System.out.println("Judul--penulis--terbit--harga--stock");
+        System.out.println("-------------------");
+        System.out.println("Judul -- penulis -- terbit -- harga -- stock");
         System.out.println("-------------------");
         for (int i = 0; i < listBuku.size(); i++){
 
             //jika genre sama
-            if(listBuku.get(i).getGenre().toLowerCase().equals(genre)){
-                Book data = listBuku.get(i);
+            if(listBuku.get(i).getGenre().toLowerCase().equals(genreDitemukan)){
 
-                System.out.println(data.getTitle() + "--" + data.getWriter() + "--" + data.getPublished() + "--" + data.getPrice() + "--" + data.getAmount());
+                Book data = listBuku.get(i);
+                String title = data.getTitle();
+                String writer = data.getWriter();
+                int publised = data.getPublished();
+                double price = data.getPrice();
+                int amount = data.getAmount();
+
+                System.out.println(title+ " -- " + writer + " -- " + publised + " -- " + price + " -- " + amount);
             }
         }
     }

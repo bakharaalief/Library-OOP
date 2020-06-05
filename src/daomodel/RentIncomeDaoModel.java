@@ -58,7 +58,7 @@ public class RentIncomeDaoModel implements Dao<Income> {
             pstmt.executeUpdate();
 
             //notif user berhasil dibuat
-            System.out.println("Note : Rent income berhasil di import");
+            //System.out.println("Note : Rent income berhasil di import");
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -58,7 +58,7 @@ public class BookDaoModel implements Dao<Book> {
             pstmt.executeUpdate();
 
             //notif user berhasil dibuat
-            System.out.println("Note : buku berhasil di import");
+            //System.out.println("Note : buku berhasil di import");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,7 +82,7 @@ public class BookDaoModel implements Dao<Book> {
             pstmt.executeUpdate();
 
             //notif user berhasil diupdate
-            System.out.println("Note : Perubahaan berhasil dilakukan");
+            //System.out.println("Note : Perubahaan berhasil dilakukan");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,7 +100,7 @@ public class BookDaoModel implements Dao<Book> {
             pstmt.executeUpdate();
 
             //notif user berhasil diupdate
-            System.out.println("Note : Perubahaan stock berhasil dilakukan");
+            //System.out.println("Note : Perubahaan stock berhasil dilakukan");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -118,7 +118,7 @@ public class BookDaoModel implements Dao<Book> {
             pstmt.executeUpdate();
 
             //notif user berhasil dihapus
-            System.out.println("Note : Buku berhasil dihapus");
+            //System.out.println("Note : Buku berhasil dihapus");
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -61,7 +61,6 @@ public class YoungIncome extends IncomeManage implements DiskonRent {
             hasil = income - potongan;
             System.out.println("Potongan        : Rp. " + potongan);
 
-
             System.out.println("-----------");
 
             //mendapatkan boneka

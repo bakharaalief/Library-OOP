@@ -3,17 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="3615ccfc-25c8-438e-a2a8-79901a4388f4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PerpustakaanOOP/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PerpustakaanOOP/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PerpustakaanOOP/model/BookStock.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PerpustakaanOOP/model/BookStock.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PerpustakaanOOP/model/RentBook.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PerpustakaanOOP/model/RentBook.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PerpustakaanOOP/model/UserManage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PerpustakaanOOP/model/UserManage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PerpustakaanOOP/model/YoungIncome.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PerpustakaanOOP/model/YoungIncome.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/daomodel/BookDaoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daomodel/BookDaoModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/daomodel/RentIncomeDaoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daomodel/RentIncomeDaoModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/daomodel/UserBookDaoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daomodel/UserBookDaoModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/daomodel/UserDaoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daomodel/UserDaoModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/AdultIncome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/AdultIncome.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/BookStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/BookStock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/DiskonRent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DiskonRent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/RentBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/RentBook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/UserManage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/UserManage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/YoungIncome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/YoungIncome.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -93,22 +94,22 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1589661433488" />
-    <state width="1493" height="489" key="GridCell.Tab.0.bottom" timestamp="1590617666240">
+    <state width="1493" height="338" key="GridCell.Tab.0.bottom" timestamp="1591347376971">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="489" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1590617666240" />
-    <state width="1493" height="489" key="GridCell.Tab.0.center" timestamp="1590617666240">
+    <state width="1493" height="338" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1591347376971" />
+    <state width="1493" height="338" key="GridCell.Tab.0.center" timestamp="1591347376971">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="489" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1590617666240" />
-    <state width="1493" height="489" key="GridCell.Tab.0.left" timestamp="1590617666239">
+    <state width="1493" height="338" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1591347376971" />
+    <state width="1493" height="338" key="GridCell.Tab.0.left" timestamp="1591347376971">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="489" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1590617666239" />
-    <state width="1493" height="489" key="GridCell.Tab.0.right" timestamp="1590617666240">
+    <state width="1493" height="338" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1591347376971" />
+    <state width="1493" height="338" key="GridCell.Tab.0.right" timestamp="1591347376971">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="489" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1590617666240" />
+    <state width="1493" height="338" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1591347376971" />
     <state width="1493" height="265" key="GridCell.Tab.1.bottom" timestamp="1589821697286">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -133,6 +134,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="578" y="334" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" timestamp="1590086248620" />
+    <state x="209" y="37" key="new project wizard" timestamp="1591209004351">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="209" y="37" key="new project wizard/0.0.1536.834@0.0.1536.834" timestamp="1591209004351" />
     <state x="425" y="189" key="run.anything.popup" timestamp="1589671060581">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -149,6 +154,14 @@
           <url>file://$PROJECT_DIR$/src/model/IncomeManage.java</url>
           <line>50</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/model/RentBook.java</url>
+          <line>276</line>
+          <properties class="model.RentBook" method="listRentBook">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

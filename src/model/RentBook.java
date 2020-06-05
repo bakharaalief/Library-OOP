@@ -44,8 +44,8 @@ public class RentBook {
         bolehPinjam = false;
     }
 
-    //check buku di server
-    public void listRentSementaraCheck(String firstnameInput, String lastnameInput, String titleInput, String dateString){
+    //check peminjam di server
+    public void listRentCheck(String firstnameInput, String lastnameInput, String titleInput, String dateString){
         //merefresh data di database
         listRent = userBookDaoModel.getAll();
 
@@ -204,6 +204,9 @@ public class RentBook {
                         //mengurangi stock buku
                         bookStock.minusStockBook(titleInput, amountInput);
 
+                        //notif
+                        System.out.println("Peminjaman berhasil Dilakukan");
+
                     } catch (Exception e) {
                         System.out.println("maaf melakukan pinjaman gagal buku baru gagal");
                     }
@@ -227,7 +230,7 @@ public class RentBook {
     //pengembalian buku
     public void returnBook(String firstnameInput, String lastnameInput, String titleInput, String dateInput){
         //ditemukan
-        listRentSementaraCheck(firstnameInput, lastnameInput, titleInput, dateInput);
+        listRentCheck(firstnameInput, lastnameInput, titleInput, dateInput);
 
         //ditemukan
         if(ditemukan){
@@ -253,6 +256,8 @@ public class RentBook {
                     //menambah stock buku lagi
                     bookStock.plusStockBook(titleInput, userBookData.getAmount());
 
+                    System.out.println("Terima Kasih Sudah Mengembalikan Buku");
+
                     ditemukan = false;
                 }
 
@@ -266,6 +271,33 @@ public class RentBook {
         else{
             System.out.println("Maaf pengembalian gagal karena data tidak ditemukan");
         }
+    }
+
+    //list belum balikin buku
+    public void listRentBook(){
+        listRent = userBookDaoModel.getAll();
+        int nomor = 1;
+
+        System.out.println("Nomor -- Nama Depan -- Nama Belakang -- Judul -- Jumlah -- Tanggal");
+        System.out.println("-------------------");
+
+        for(int i = 0; i < listRent.size(); i++){
+
+            UserBook data = listRent.get(i);
+            boolean dibalikan = data.isReturned();
+            String firstname = data.getFirstName();
+            String lastname = data.getLastName();
+            String title = data.getTitle();
+            int amount = data.getAmount();
+            String tanggal = data.getRent_start().toString();
+
+
+            if(!dibalikan){
+                System.out.println(nomor + " -- " + firstname + " -- " + lastname + " -- " + title + " -- " + amount + " -- " + tanggal);
+                nomor++;
+            }
+        }
+
     }
 
     //mengambil jumlah buku yang dipinjam
