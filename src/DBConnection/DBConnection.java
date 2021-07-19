@@ -12,13 +12,17 @@ public class DBConnection {
     private static final String PASS = "";
 
     public static Connection getConnection() {
-        try {
-            // register driver
-            Class.forName(JDBC_DRIVER);
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        //singleton in connection
+        if(conn == null){
+            try {
+                // register driver
+                Class.forName(JDBC_DRIVER);
+                conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         return conn;

@@ -1,2 +1,13 @@
-"# Library-OOP"  git init git add README.md git commit -m "first commit" git remote add origin https://github.com/bakharaalief/Library-OOP.git git push -u origin master
-"# Library-OOP" 
+#LIBRARY OOP
+Aplikasi ini adalah sebuah sistem perpustakaan bersasis java OOP yang dibuat 
+untuk memenuhi tugas akhir Pemograman OOP. Aplikasi ini nantinya mampu
+terhubung dengan Database<br>
+
+#STRUKTUR
+* DAO
+* DAOmodel
+* DBConnection
+* Model
+* Main
+
+
