@@ -1,9 +1,9 @@
-#LIBRARY OOP
+# LIBRARY OOP
 Aplikasi ini adalah sebuah sistem perpustakaan bersasis java OOP yang dibuat 
 untuk memenuhi tugas akhir Pemograman OOP. Aplikasi ini nantinya mampu
 terhubung dengan Database<br>
 
-#STRUKTUR
+# STRUKTUR
 * DAO
 * DAOmodel
 * DBConnection
